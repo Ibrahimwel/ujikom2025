@@ -1,53 +1,79 @@
 <!DOCTYPE html>
- <html lang="en">
+<html lang="en" data-bs-theme="light">
 
- <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do List</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-   <title>To-Do List</title>
+<body>
 
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-   <script type="module" src="main.js"></script>
-   <link rel="stylesheet" href="style.css">    
+  <header class="bg-primary text-white py-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="h3 mb-0">My To-Do List</h1>
+      <button id="darkModeToggle" class="btn btn-outline-light">🌘</button>
+    </div>
+  </header>
 
- 
-  </head>
+  <main class="container mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h5">Daftar Tugas</h2>
+      <a href="tambah.html" class="btn btn-success">+ Tambah Tugas</a>
+    </div>
 
- <body>
-   <h1>TO DO LIST</h1>
-   <table class="table" id="daftar-tugas">
-     <div class="dropdown">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="form-control" placeholder="Cari tugas..." aria-label="Cari tugas">
+    </div>
+
+<div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="fanjusllse">
     menu
   </button>
   <ul class="dropdown-menu dropdown-menu-dark">
     <li><a <a href="tambah.html" class="tombol">tambah</a>
 </div
-     <thead>
-       <tr>
-         <th>tugas</th>
-       </tr>
-       <tr>
-         <th scope="col">#</th>
-         <th scope="col">tugas</th>
-         <th scope="col" id="status">status</th>
-         <th scope="col">prioritas</th>
-         <th scope="col">tanggal</th>
-         <th>aksi</th>
-         <th>aksi</th>
-       </tr>
-     </thead>
-     <tbody>
-     </tbody>
-   </table>
 
+    <div class="table-responsive">
+      <table class="table table-striped table-hover" id="daftar-tugas">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Tugas</th>
+            <th>Status</th>
+            <th>Prioritas</th>
+            <th>Tanggal</th>
+            <th colspan="2">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </main>
 
-  
+  <footer class="bg-light text-center py-3">
+    <small>&copy; 2025 My To-Do List App</small>
+  </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script type="module" src="main.js"></script>
+  <script>
+  const toggleButton = document.getElementById('darkModeToggle');
+  const htmlElement = document.documentElement;
+
+  toggleButton.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-bs-theme');
+    htmlElement.setAttribute('data-bs-theme', currentTheme === 'light' ? 'dark' : 'light');
+  });
+</script>
+
+</body>
    <script type="module">
      import { ambildaftartugas, hapustugas } from './main.js';
 
@@ -97,3 +123,5 @@
  </body>
 
  </html>
+
+</html>
