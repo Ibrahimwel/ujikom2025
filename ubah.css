@@ -1,53 +1,93 @@
 /* Import Google Font */
+/* Mengimpor font 'Poppins' dari Google Fonts dengan bobot 300, 400, dan 600 */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+/* Gaya dasar untuk <body> */
 body {
   font-family: 'Poppins', sans-serif;
+  /* Menggunakan font Poppins */
   background-color: #f8f9fa;
+  /* Warna latar abu terang */
   display: flex;
+  /* Menggunakan flexbox */
   justify-content: center;
+  /* Pusatkan horizontal */
   align-items: center;
+  /* Pusatkan vertikal */
   height: 100vh;
+  /* Tinggi layar penuh */
   margin: 0;
+  /* Hilangkan margin default */
 }
 
+/* Gaya untuk container utama */
 .container {
   background: white;
+  /* Latar putih */
   padding: 20px;
+  /* Padding dalam */
   border-radius: 10px;
+  /* Sudut membulat */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  /* Bayangan halus */
   width: 100%;
+  /* Lebar penuh */
   max-width: 400px;
+  /* Maksimum 400px */
 }
 
+/* Gaya untuk elemen <h1> */
 h1 {
   text-align: center;
+  /* Teks di tengah */
   font-weight: 600;
+  /* Ketebalan huruf medium-tebal */
   color: #333;
+  /* Warna teks abu tua */
   margin-bottom: 20px;
+  /* Jarak bawah dari elemen berikutnya */
 }
 
-.form-control, .form-select {
+/* Gaya untuk input form dan dropdown */
+.form-control,
+.form-select {
   border-radius: 8px;
+  /* Sudut membulat */
   border: 1px solid #ced4da;
+  /* Garis abu terang */
   transition: border-color 0.3s;
+  /* Efek transisi saat fokus */
 }
 
-.form-control:focus, .form-select:focus {
+/* Gaya saat input atau select difokuskan */
+.form-control:focus,
+.form-select:focus {
   border-color: #007bff;
+  /* Garis biru saat fokus */
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  /* Efek bayangan biru */
 }
 
+/* Gaya untuk tombol utama */
 .btn-primary {
   width: 100%;
+  /* Lebar penuh */
   border-radius: 8px;
+  /* Sudut membulat */
   padding: 10px;
+  /* Padding dalam */
   font-size: 16px;
+  /* Ukuran teks */
   transition: 0.3s;
+  /* Efek transisi hover */
   background-color: #007bff;
+  /* Warna biru standar Bootstrap */
   border: none;
+  /* Tanpa garis tepi */
 }
 
+/* Efek hover pada tombol */
 .btn-primary:hover {
   background-color: #0056b3;
+  /* Warna biru lebih gelap saat hover */
 }

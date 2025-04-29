@@ -1,126 +1,127 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<!DOCTYPE html> <!-- Menandakan dokumen HTML5 -->
+<html lang="en" data-bs-theme="light"> <!-- Bahasa dokumen Inggris, tema awal Bootstrap adalah 'light' -->
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>To-Do List</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"> <!-- Encoding karakter UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Layout responsif untuk perangkat mobile -->
+  <title>To-Do List</title> <!-- Judul halaman di tab browser -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon tab -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="style.css"> <!-- Style tambahan -->
 </head>
 
+<body>
   
-
-  <header class="bg-primary text-white py-3 mb-4">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h3 mb-0">My To-Do List</h1>
-      <button id="darkModeToggle" class="btn btn-outline-light">🌘</button>
+  <header class="bg-primary text-white py-3 mb-4"> <!-- Header berwarna biru dengan teks putih -->
+    <div class="container d-flex justify-content-between align-items-center"> <!-- Flexbox horizontal -->
+      <h1 class="h3 mb-0">My To-Do List</h1> <!-- Judul aplikasi -->
+      <button id="darkModeToggle" class="btn btn-outline-light">🌘</button> <!-- Tombol toggle mode gelap -->
     </div>
   </header>
-  <main class="container mb-5">
+  
+  <main class="container mb-5"> <!-- Konten utama dalam container -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h2 class="h5">Daftar Tugas</h2>
-
+      <h2 class="h5">Daftar Tugas</h2> <!-- Subjudul -->
     </div>
-
-    <div class="input-group mb-3">
+    
+    <div class="input-group mb-3"> <!-- Input pencarian dengan ikon -->
       <span class="input-group-text" id="search-icon">🔍</span>
       <input type="text" id="searchInput" class="form-control" placeholder="Cari tugas..." aria-label="Cari tugas">
     </div>
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="fanjusllse">
-    menu
-  </button>
-  <ul class="dropdown-menu dropdown-menu-dark">
-    <li><a <a href="tambah.html" class="tombol">tambah</a>
-</div
-
-    <div class="table-responsive">
+    
+    <div class="dropdown"> <!-- Dropdown menu -->
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        menu
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a href="tambah.html" class="tombol">tambah</a></li> <!-- Link ke halaman tambah tugas -->
+      </ul>
+    </div>
+    
+    <div class="table-responsive"> <!-- Tabel daftar tugas -->
       <table class="table table-striped table-hover" id="daftar-tugas">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Status</th>
-            <th>Prioritas</th>
-            <th>Tanggal</th>
-                    <th colspan="1">Aksi</th>
-            <th colspan="2">Aksi</th>
+            <th>#</th> <!-- Nomor -->
+            <th>Status</th> <!-- Nama Tugas -->
+            <th>Prioritas</th> <!-- Prioritas tugas -->
+            <th>Tanggal</th> <!-- Tanggal tugas -->
+            <th colspan="1">Aksi</th> <!-- Kolom ubah -->
+            <th colspan="2">Aksi</th> <!-- Kolom hapus -->
           </tr>
         </thead>
-        <tbody>
+        <tbody> <!-- Isi data akan ditambahkan via JavaScript -->
         </tbody>
       </table>
     </div>
   </main>
-
-  <footer class="bg-light text-center py-3">
+  
+  <footer class="bg-light text-center py-3"> <!-- Footer sederhana -->
     <small>&copy; 2025 My To-Do List App</small>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script type="module" src="main.js"></script>
+  
+  <!-- Script eksternal -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> <!-- JS Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!-- jQuery -->
+  <script type="module" src="main.js"></script> <!-- Modul eksternal -->
+  
+  <!-- Script untuk toggle mode gelap -->
   <script>
-  const toggleButton = document.getElementById('darkModeToggle');
-  const htmlElement = document.documentElement;
-
-  toggleButton.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-bs-theme');
-    htmlElement.setAttribute('data-bs-theme', currentTheme === 'light' ? 'dark' : 'light');
-  });
-</script>
-
+    const toggleButton = document.getElementById('darkModeToggle'); // Tombol toggle
+    const htmlElement = document.documentElement; // Elemen <html>
+    
+    toggleButton.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-bs-theme'); // Ambil tema sekarang
+      htmlElement.setAttribute('data-bs-theme', currentTheme === 'light' ? 'dark' : 'light'); // Ubah ke tema lain
+    });
+  </script>
+  
+  <!-- Script utama halaman -->
+  <script type="module">
+    import { ambildaftartugas, hapustugas } from './main.js'; // Import fungsi dari file eksternal
+    
+    $(document).ready(async function() { // Saat dokumen siap
+      let elemenDaftar = $("#daftar-tugas > tbody"); // Ambil elemen tbody
+      let daftartugas = await ambildaftartugas(); // Ambil data tugas
+      let nomor = 1;
+      
+      daftartugas.forEach((data) => { // Loop data tugas
+        elemenDaftar.append(
+          `<tr>
+            <th>${nomor}</th>
+            <td>${data.tugas}</td>
+            <td>
+              <button class="btn-status" data-status="${data.status}" data-id="${data.id}">${data.status}</button>
+            </td>
+            <td>${data.prioritas}</td>
+            <td>${data.tanggal}</td>
+            <td><button class="btn btn-warning ubah" data-id="${data.id}" data-tugas="${data.tugas}" data-status="${data.status}" data-prioritas="${data.prioritas}" data-tanggal="${data.tanggal}">Ubah</button></td>
+            <td><a href="#" class="btn btn-danger tombol-hapus" data-id="${data.id}">Hapus</a></td>
+          </tr>`
+        );
+        nomor++;
+      });
+      
+      // Event hapus tugas
+      $(document).on('click', '.tombol-hapus', async function() {
+        await hapustugas($(this).attr('data-id')); // Panggil fungsi hapus berdasarkan ID
+        location.reload(); // Muat ulang halaman
+      });
+      
+      // Event ubah tugas
+      $(document).on('click', '.ubah', function() {
+        let docId = $(this).attr('data-id');
+        let tugas = $(this).attr('data-tugas');
+        let status = $(this).attr('data-status');
+        let prioritas = $(this).attr('data-prioritas');
+        let tanggal = $(this).attr('data-tanggal');
+        
+        // Arahkan ke halaman ubah tugas dengan parameter di URL
+        window.location.replace(`ubahtugas.html?docId=${docId}&tugas=${tugas}&status=${status}&prioritas=${prioritas}&tanggal=${tanggal}`);
+      });
+    });
+  </script>
+  
 </body>
-   <script type="module">
-     import { ambildaftartugas, hapustugas } from './main.js';
-
-     $(document).ready(async function() {
-       let elemenDaftar = $("#daftar-tugas > tbody");
-       let daftartugas = await ambildaftartugas();
-       let nomor = 1;
-       daftartugas.forEach((data) => {
-         elemenDaftar.append(
-           `<tr>
-             <th>${nomor}</th>
-             <td>${data.tugas}</td>
-             <td>
-               <button class="btn-status" data-status="${data.status}" data-id="${data.id}">${data.status}</button>
-             </td>
-             <td>${data.prioritas}</td>
-             <td>${data.tanggal}</td>
-             <td><button class="btn btn-warning ubah" data-id="${data.id}" data-tugas="${data.tugas}" data-status="${data.status}" data-prioritas="${data.prioritas}" data-tanggal="${data.tanggal}">Ubah</button></td>
-             <td><a href="#" class="btn btn-danger tombol-hapus" data-id="${data.id}">Hapus</a></td>
-           </tr>`
-         );
-         nomor++;
-       });
-
-       // Gunakan event delegation untuk hapus tugas
-       $(document).on('click', '.tombol-hapus', async function() {
-         await hapustugas($(this).attr('data-id'));
-         location.reload();
-       });
-
-       // Gunakan event delegation untuk ubah tugas
-       $(document).on('click', '.ubah', function() {
-         let docId = $(this).attr('data-id');
-         let tugas = $(this).attr('data-tugas');
-         let status = $(this).attr('data-status');
-         let prioritas = $(this).attr('data-prioritas');
-         let tanggal = $(this).attr('data-tanggal');
-
-         window.location.replace(`ubahtugas.html?docId=${docId}&tugas=${tugas}&status=${status}&prioritas=${prioritas}&tanggal=${tanggal}`);
-       });
-     });
-   </script>
-   
- 
-   
-
- </body>
-
- </html>
 
 </html>

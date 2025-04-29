@@ -30,7 +30,7 @@ export async function ambildaftartugas() {
   const refDokumen = collection(db, "senin");
   const kueri = query(refDokumen, orderBy("tugas"));
   const cuplikankueri = await getDocs(kueri);
-
+  
   let hasil = [];
   cuplikankueri.forEach((dok) => {
     hasil.push({
@@ -41,7 +41,7 @@ export async function ambildaftartugas() {
       tanggal: dok.data().tanggal,
     });
   });
-
+  
   return hasil;
 }
 
@@ -75,13 +75,13 @@ export async function ubahtugas(docId, tugas, status, prioritas, tanggal) {
 export async function ambiltugas(docId) {
   const docRef = await doc(db, "senin", docId);
   const docSnap = await getDoc(docRef);
-
+  
   return await docSnap.data();
 }
 
 function ubahStatus(tombol) {
   let status = tombol.dataset.status;
-
+  
   if (status === "Selesai") {
     tombol.textContent = "Belum Selesai";
     tombol.dataset.status = "Belum Selesai";
@@ -92,22 +92,22 @@ function ubahStatus(tombol) {
 }
 
 // Event listener untuk hapus tugas
-$(".tombol-hapus").click(async function () {
+$(".tombol-hapus").click(async function() {
   await hapustugas($(this).attr("data-id"));
   location.reload();
 });
 
 // Event listener untuk ubah tugas
-$(".ubah").click(async function () {
+$(".ubah").click(async function() {
   window.location.replace("ubahtugas.html?docId=" + $(this).attr("data-id"));
 });
 
 // Gunakan event delegation agar berfungsi pada elemen dinamis
-$(document).on("click", ".btn-status", function () {
+$(document).on("click", ".btn-status", function() {
   let tugasId = $(this).attr("data-id");
   let statusSekarang = $(this).attr("data-status");
   let statusBaru;
-
+  
   if (statusSekarang === "Belum Selesai") {
     statusBaru = "Sedang Dikerjakan";
   } else if (statusSekarang === "Sedang Dikerjakan") {
@@ -115,12 +115,12 @@ $(document).on("click", ".btn-status", function () {
   } else {
     statusBaru = "Belum Selesai";
   }
-
+  
   // Update tampilan tombol
   $(this).attr("data-status", statusBaru);
   $(this).text(statusBaru);
   updateWarnaStatus($(this), statusBaru);
-
+  
   // Tambahkan kode AJAX jika ingin menyimpan perubahan status ke database
   console.log(`Status tugas ID ${tugasId} diubah menjadi ${statusBaru}`);
 });
@@ -137,8 +137,8 @@ function updateWarnaStatus(button, status) {
 }
 
 // Atur warna status setelah halaman dimuat
-$(document).ready(function () {
-  $(".btn-status").each(function () {
+$(document).ready(function() {
+  $(".btn-status").each(function() {
     updateWarnaStatus($(this), $(this).attr("data-status"));
   });
 });

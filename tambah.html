@@ -5,29 +5,29 @@
 <head>
   <meta charset="UTF-8">
   <!-- Menetapkan encoding karakter ke UTF-8 -->
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Membuat tampilan halaman agar responsif di berbagai perangkat -->
-
+  
   <title>to-do list</title>
   <!-- Judul halaman yang muncul di tab browser -->
-
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- Menghubungkan file CSS Bootstrap untuk styling -->
-
+  
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <!-- Menyisipkan library jQuery -->
-
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <!-- Menyisipkan file JavaScript Bootstrap -->
 </head>
 
 <body class="m-3">
   <!-- Badan halaman dengan margin sekeliling -->
-
+  
   <h1>tambah tugas</h1>
   <!-- Judul utama halaman -->
-
+  
   <div class="dropdown">
     <!-- Menu dropdown navigasi -->
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,16 +38,16 @@
       <!-- Link kembali ke halaman utama -->
     </ul>
   </div>
-
+  
   <form class="mb-3">
     <!-- Formulir untuk menambah tugas -->
-
+    
     <div class="mb-3">
       <label class="form-label">tugas</label>
       <input type="text" class="form-control" id="input-tugas" required>
       <!-- Input teks untuk nama tugas -->
     </div>
-
+    
     <div class="mb-3">
       <select class="form-select" aria-label="Default select example" id="input-status">
         <!-- Dropdown untuk memilih status -->
@@ -57,7 +57,7 @@
         <option value="belum selesai">belum</option>
       </select>
     </div>
-
+    
     <div class="mb-3">
       <select class="form-select" aria-label="Default select example" id="input-prioritas">
         <!-- Dropdown untuk memilih prioritas -->
@@ -67,33 +67,33 @@
         <option value="rendah🔵">rendah</option>
       </select>
     </div>
-
+    
     <div class="mb-3">
       <label class="form-label">tanggal</label>
       <input type="date" class="form-control" id="input-tanggal">
       <!-- Input tanggal -->
     </div>
-
+    
     <button type="submit" class="btn btn-primary" id="tombol-tambah">Simpan</button>
     <!-- Tombol untuk menyimpan data -->
   </form>
-
+  
   <script type="module">
     // Menggunakan module JavaScript modern
     import { tambahtugas } from './main.js';
     // Mengimpor fungsi untuk menyimpan tugas
-
+    
     let tomboltambah = document.getElementById('tombol-tambah');
     let elementugas = document.getElementById('input-tugas');
     let elemenstatus = document.getElementById('input-status');
     let elemenprioritas = document.getElementById('input-prioritas');
     let elementanggal = document.getElementById('input-tanggal');
     // Mengambil elemen-elemen input dari DOM
-
+    
     tomboltambah.addEventListener('click', async function(e) {
       e.preventDefault();
       // Mencegah perilaku default form submit
-
+      
       if (
         elementugas.value.trim() === '' ||
         elemenstatus.value === 'status' ||
@@ -104,7 +104,7 @@
         return;
       }
       // Validasi input agar tidak kosong atau default
-
+      
       await tambahtugas(
         elementugas.value,
         elemenstatus.value,
@@ -112,7 +112,7 @@
         elementanggal.value
       );
       // Menjalankan fungsi untuk menyimpan data
-
+      
       window.location.href = 'index.html';
       // Redirect ke halaman utama setelah data tersimpan
     });
